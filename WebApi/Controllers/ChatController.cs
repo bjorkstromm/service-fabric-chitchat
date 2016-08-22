@@ -12,10 +12,10 @@ namespace WebApi.Controllers
 {
     public class ChatController : WebSocketConnection
     {
-        private readonly IChatService _chatService;
+        private readonly IChatClientService _chatService;
         private ChatClient _chatClient = null;
 
-        public ChatController(IChatService chatService)
+        public ChatController(IChatClientService chatService)
         {
             if(chatService == null)
             {
@@ -53,7 +53,7 @@ namespace WebApi.Controllers
                     await SendMessage($"{{ \"sender\"=\"{msg.Sender}\", \"message\"=\"{msg.Message}\" }}");
                 });
 
-                if (await _chatService.RegisterClientAsync(chatClient))
+                if (await _chatService.RegisterAsync(chatClient))
                 {
                     _chatClient = chatClient;
                     await SendMessage($"{{ \"message\"=\"Welcome {name}!\" }}");
@@ -66,15 +66,6 @@ namespace WebApi.Controllers
 
                 return;
             }
-
-            //Handle the message from the client
-
-            //Example of JSON serialization with the client
-            var json = Encoding.UTF8.GetString(message.Array, message.Offset, message.Count);
-
-
-            //Echo the message back to the client as text
-            
         }
 
         private Task SendWelcomeMessage()

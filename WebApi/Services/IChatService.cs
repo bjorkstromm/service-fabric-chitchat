@@ -3,8 +3,8 @@ using WebApi.Models;
 
 namespace WebApi.Services
 {
-    public interface IChatService
+    public interface IChatClientService
     {
-        Task<bool> RegisterClientAsync(ChatClient client);
+        Task<bool> RegisterAsync(ChatClient client);
     }
 }

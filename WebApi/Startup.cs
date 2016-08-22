@@ -1,8 +1,10 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.StaticFiles;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
+using Microsoft.ServiceFabric.Services.Remoting.Client;
 using Owin;
 using Owin.WebSocket.Extensions;
 using WebApi.Controllers;
@@ -16,9 +18,19 @@ namespace WebApi
         {
             var container = new UnityContainer();
 
-            container.RegisterType<IChatService, ChatService>();
+            container.RegisterType<IChatClientService, ChatClientService>();
 
-            return new UnityServiceLocator(container);
+            container.RegisterType<ChatService.Interfaces.IChatService>(new InjectionFactory(c => {
+                return ServiceProxy.Create<ChatService.Interfaces.IChatService>(
+                    new Uri("fabric:/Chitchat/ChatService"),
+                    new Microsoft.ServiceFabric.Services.Client.ServicePartitionKey(0));
+            }));
+
+            // Register self as IServiceLocator
+            var locator = new UnityServiceLocator(container);
+            container.RegisterInstance<IServiceLocator>(locator);
+
+            return locator;
         }
 
         // This code configures Web API. The Startup class is specified as a type

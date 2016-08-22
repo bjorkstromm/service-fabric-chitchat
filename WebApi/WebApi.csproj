@@ -134,10 +134,10 @@
     <Compile Include="Models\ChatClient.cs" />
     <Compile Include="Models\ChatMessage.cs" />
     <Compile Include="Services\ChatService.cs" />
-    <Compile Include="Services\IChatService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="OwinCommunicationListener.cs" />
+    <Compile Include="Services\IChatService.cs" />
     <Compile Include="WebApi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ServiceEventSource.cs" />
@@ -153,6 +153,12 @@
     <Content Include="wwwroot\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChatService.Interfaces\ChatService.Interfaces.csproj">
+      <Project>{dd4f593d-61ce-400a-9cc1-827de7d8d96e}</Project>
+      <Name>ChatService.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
