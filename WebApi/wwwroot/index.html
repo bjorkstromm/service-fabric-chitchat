@@ -11,6 +11,14 @@
         function init() {
             output = document.getElementById("output");
             testWebSocket();
+
+            document.getElementById("form").addEventListener("submit", function (event) {
+                event.preventDefault();
+                var messageTxt = document.getElementById("messageTxt");
+                doSend(messageTxt.value);
+                messageTxt.value = "";
+                return false;
+            });
         }
 
         function testWebSocket() {
@@ -23,7 +31,6 @@
 
         function onOpen(evt) {
             writeToScreen("CONNECTED");
-            doSend("foobar");
         }
 
         function onClose(evt) {
@@ -32,7 +39,6 @@
 
         function onMessage(evt) {
             writeToScreen('<span style="color: blue;">' + evt.data + '</span>');
-            doSend(evt.data);
             setTimeout(function () { }, 5000);
         }
 
@@ -58,7 +64,10 @@
 </head>
 <body>
     <h2>WebSocket Test</h2>
-
+    <form id="form">
+        Message: <input id="messageTxt" type="text">
+        <input type="submit">
+    </form>
     <div id="output"></div>
 </body>
 </html>

@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatService", "ChatService\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatService.Interfaces", "ChatService.Interfaces\ChatService.Interfaces.csproj", "{DD4F593D-61CE-400A-9CC1-827DE7D8D96E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatActor", "ChatActor\ChatActor.csproj", "{C9AC1313-805C-49F8-B5B3-48941DC68024}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatActor.Interfaces", "ChatActor.Interfaces\ChatActor.Interfaces.csproj", "{64602A07-5381-49E0-8D78-065FD071A6B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,18 @@ Global
 		{DD4F593D-61CE-400A-9CC1-827DE7D8D96E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD4F593D-61CE-400A-9CC1-827DE7D8D96E}.Release|x64.ActiveCfg = Release|Any CPU
 		{DD4F593D-61CE-400A-9CC1-827DE7D8D96E}.Release|x64.Build.0 = Release|Any CPU
+		{C9AC1313-805C-49F8-B5B3-48941DC68024}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{C9AC1313-805C-49F8-B5B3-48941DC68024}.Debug|x64.ActiveCfg = Debug|x64
+		{C9AC1313-805C-49F8-B5B3-48941DC68024}.Debug|x64.Build.0 = Debug|x64
+		{C9AC1313-805C-49F8-B5B3-48941DC68024}.Release|Any CPU.ActiveCfg = Release|x64
+		{C9AC1313-805C-49F8-B5B3-48941DC68024}.Release|x64.ActiveCfg = Release|x64
+		{C9AC1313-805C-49F8-B5B3-48941DC68024}.Release|x64.Build.0 = Release|x64
+		{64602A07-5381-49E0-8D78-065FD071A6B8}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{64602A07-5381-49E0-8D78-065FD071A6B8}.Debug|x64.ActiveCfg = Debug|x64
+		{64602A07-5381-49E0-8D78-065FD071A6B8}.Debug|x64.Build.0 = Debug|x64
+		{64602A07-5381-49E0-8D78-065FD071A6B8}.Release|Any CPU.ActiveCfg = Release|x64
+		{64602A07-5381-49E0-8D78-065FD071A6B8}.Release|x64.ActiveCfg = Release|x64
+		{64602A07-5381-49E0-8D78-065FD071A6B8}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -30,7 +30,7 @@ namespace WebApi.Controllers
             return SendWelcomeMessage();
         }
 
-        public async override Task OnMessageReceived(ArraySegment<byte> message, WebSocketMessageType type)
+        public async override Task OnMessageReceived(ArraySegment<byte> messageBuffer, WebSocketMessageType type)
         {
             // Close if not Text
             if(type != WebSocketMessageType.Text)
@@ -46,7 +46,7 @@ namespace WebApi.Controllers
             // Check if Registered
             if(_chatClient == null)
             {
-                var name = Encoding.UTF8.GetString(message.Array, message.Offset, message.Count);
+                var name = Encoding.UTF8.GetString(messageBuffer.Array, messageBuffer.Offset, messageBuffer.Count);
 
                 var chatClient = new ChatClient(name, async (msg) =>
                 {
@@ -65,6 +65,20 @@ namespace WebApi.Controllers
                 }
 
                 return;
+            }
+
+
+            var message = Encoding.UTF8.GetString(messageBuffer.Array, messageBuffer.Offset, messageBuffer.Count).TrimStart();
+
+            if(message.StartsWith(@"@server", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var tokens = message.Split(' ');
+                if(tokens.Length > 1 && tokens[1].Equals("clients", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    var clients = await _chatService.GetClientsAsync();
+                    
+                    await SendMessage($"{{ \"message\"=\"{string.Join(",",clients)}\" }}");
+                }
             }
         }
 
